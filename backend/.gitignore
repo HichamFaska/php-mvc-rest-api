@@ -1,0 +1,11 @@
+# .env file
+.env
+# vendor package
+/vendor
+composer.lock
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
