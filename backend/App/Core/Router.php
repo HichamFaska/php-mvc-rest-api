@@ -4,6 +4,7 @@
 
     use App\Http\Request;
     use App\Http\Response;
+use ReflectionClass;
 
     class Router{
         private array $routes = [];
@@ -31,7 +32,17 @@
 
                     if(is_array($route['action'])){
                         [$controller, $methodName] = $route['action'];
-                        $controllerInstance = new $controller;
+
+                        $reflection = new ReflectionClass($controller);
+                        $constructor = $reflection->getConstructor();
+
+                        if ($constructor && $constructor->getNumberOfParameters() > 0) {
+                            $controllerInstance = new $controller($request);
+                        }
+                        else{
+                            $controllerInstance = new $controller();
+                        }
+
                         call_user_func_array([$controllerInstance, $methodName], $matches);
                         return;
                     }

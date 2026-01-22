@@ -1,22 +1,23 @@
 <?php
     namespace App\Database;
+    use App\Core\Env;
     use PDO;
     use PDOException;
     use Exception;
 
     class Database {
-        private static ?PDO $conn;
+        private static ?PDO $conn = null;
 
         public static function getConnection(){
             if (self::$conn !== null) {
                 return self::$conn;
             }
             try{
-                $host = getenv("DB_HOST");
-                $port = getenv("DB_PORT");
-                $username = getenv("DB_USER");
-                $password = getenv("DB_PASSWORD");
-                $dbname = getenv("DB_NAME");
+                $host = Env::get("DB_HOST");
+                $port = Env::get("DB_PORT");
+                $username = Env::get("DB_USER");
+                $password = Env::get("DB_PASSWORD");
+                $dbname = Env::get("DB_NAME");
                 
                 $options = [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
