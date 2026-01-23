@@ -3,10 +3,9 @@
     namespace App\Http\Controllers;
 
     use App\Http\Request;
-use App\Http\Response;
-use App\Models\Post;
-use Exception;
-use PDOException;
+    use App\Http\Response;
+    use App\Models\Post;
+    use Exception;
 
     class PostController{
         

@@ -16,7 +16,20 @@
 
         public function all():array{
             try{
-                $stmt = $this->conn->prepare("SELECT * FROM posts");
+                $stmt = $this->conn->prepare("SELECT 
+                        p.id AS post_id,
+                        p.title,
+                        p.content,
+                        p.created_at,
+                        p.updated_at,
+                        u.id AS user_id,
+                        u.name AS user_name,
+                        u.avatar AS user_avatar
+                    FROM posts p
+                    INNER JOIN users u 
+                        ON u.id = p.user_id
+                    ORDER BY p.created_at DESC
+                ");
                 $stmt->execute();
                 return $stmt->fetchAll();
             }
@@ -27,8 +40,21 @@
 
         public function find(int $id):object|null{
             try{
-                $stmt = $this->conn->prepare("SELECT * FROM posts WHERE id = ?");
-                $stmt->execute([$id]);
+                $stmt = $this->conn->prepare("SELECT 
+                        p.id AS post_id,
+                        p.title,
+                        p.content,
+                        p.created_at,
+                        u.id AS user_id,
+                        u.name,
+                        u.avatar,
+                        u.email
+                    FROM posts p
+                    INNER JOIN users u 
+                        ON u.id = p.user_id
+                    WHERE p.id = :id
+                ");
+                $stmt->execute([":id" => $id]);
                 $result = $stmt->fetch();
                 return $result ?: null;
             }
