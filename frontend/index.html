@@ -10,19 +10,25 @@
 </head>
 <body>
     <div class = "container py-5">
-        <div class = "row">
-            <div class = "col-md-8">
-                <h3 class = "mb-4 fw-bold text-dark">Posts</h3>
-                <div id = "Posts"></div>
-            </div>
-            <div class = "col-md-4 mt-6">
-                <h3 class = "fw-bold">Amis</h3> 
-                <div class = "card mt-4">
-                   
+        <div class = "card card-body p-4">
+            <div class = "row g-5">
+                <div class = "col-md-8">
+                    <div class = "d-flex justify-content-between align-items-center mb-3">
+                        <h3 class = "fw-bold text-dark">Posts</h3>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalId" >
+                            <i class="fa-solid fa-plus"></i> Ajouter
+                        </button>
+                    </div>
+                    <div id = "Posts"></div>
+                </div>
+                <div class = "col-md-4 mt-6">
+                    <h3 class = "fw-bold">Amis</h3> 
+                    <div class = "card mt-4">
+                    
+                    </div>
                 </div>
             </div>
         </div>
-        
     </div>
     <script src = "node_modules/bootstrap/dist/js/bootstrap.js"></script>
 </body>
