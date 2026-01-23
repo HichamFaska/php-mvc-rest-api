@@ -15,8 +15,15 @@ export default function PostListComponent(posts) {
                     <div class="card h-100 shadow-sm">
 
                         <div class="card-body d-flex flex-column">
+                            <div class="d-flex align-items-center mb-3">
+                                <img  src="http://127.0.0.1:8001/${post.user_avatar}" 
+                                    alt="${post.user_name}"
+                                    class="rounded-circle me-2"
+                                    width="40" height="40"
+                                >
 
-                            <!-- Header -->
+                                <strong>${post.user_name}</strong>
+                            </div>
                             <div class="mb-2">
                                 <div class = "d-flex justify-content-between align-items-center">
                                     <h5 class="card-title mb-1">${post.title}</h5>
@@ -49,11 +56,7 @@ export default function PostListComponent(posts) {
                                     <i class="fas fa-share"></i>
                                 </button>
 
-                            </div>
-
-                            <!-- Footer -->
-                            
-
+                            </div>                         
                         </div>
                     </div>
                 

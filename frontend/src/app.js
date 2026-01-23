@@ -5,7 +5,6 @@ const postsContainer = document.getElementById("Posts")
 
 async function renderPosts(){
     const result = await Post.getAll()
-
     if(!result.success){
         postsContainer.innerHTML = `
             <div class = "alert alert-danger">
