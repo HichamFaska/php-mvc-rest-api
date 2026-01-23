@@ -53,7 +53,7 @@ use ReflectionClass;
                 }
             }
             $response = new Response();
-            $response->json(['error' => 'Route not found'], 404)->send();
+            $response->cors()->json(['error' => 'Route not found'], 404)->send();
         }
 
         private function convertRoutePathToRegex(string $routePath):string{

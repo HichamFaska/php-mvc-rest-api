@@ -15,6 +15,12 @@
 
         public function send():void{
             http_response_code($this->status);
+            
+            // Ajouter les headers CORS s'ils ne sont pas déjà définis
+            if(!isset($this->headers['Access-Control-Allow-Origin'])){
+                $this->cors();
+            }
+            
             foreach($this->headers as $key => $value){
                 header("{$key}: {$value}");
             }
@@ -43,5 +49,13 @@
             $this->header('Location', $uri);
             $this->send();
             exit;
+        }
+
+        public function cors(string $origin = '*'):Response{
+            $this->header('Access-Control-Allow-Origin', $origin);
+            $this->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+            $this->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+            $this->header('Access-Control-Allow-Credentials', 'true');
+            return $this;
         }
     }
